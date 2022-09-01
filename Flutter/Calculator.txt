@@ -1,0 +1,63 @@
+//Calculator
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return MyScreen();
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({Key? key}) : super(key: key);
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  int text1 = 0;
+  int text2 = 0;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData(primarySwatch: Colors.brown),
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("My App"),
+          ),
+          body: Column(children: [
+            const Text("Addition"),
+            TextField(
+              onChanged: (val1) {
+                _updateValue1(val1);
+              },
+            ),
+            TextField(
+              onChanged: (val2) {
+                _updateValue2(val2);
+              },
+            ),
+            Text((text1 + text2).toString()),
+          ]),
+        ));
+    //);
+  }
+
+  _updateValue1(String val1) {
+    setState(() {
+      text1 = int.parse(val1);
+    });
+  }
+
+  _updateValue2(String val2) {
+    setState(() {
+      text2 = int.parse(val2);
+    });
+  }
+}
