@@ -1,0 +1,64 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, avoid_print, unused_import
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyScreen(),
+    );
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({Key? key}) : super(key: key);
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  var myList = [
+    "Samsung",
+    "Apple",
+    "OnePlus",
+    "Realme",
+    "Vivo",
+    "Oppo",
+    "Xiomi"
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My App",
+            style: TextStyle(
+              fontFamily: "Poppins",
+            )),
+        backgroundColor: Colors.blueGrey,
+      ),
+      body: ListView.builder(
+          itemCount: 20,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511707171634-5f897ff02aa9%3Fixlib%3Drb-1.2.1%26ixid%3DMnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9iaWxlJTIwcGhvbmV8ZW58MHx8MHx8%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fmobile-phone&tbnid=iZ3YvgHUhdDUJM&vet=12ahUKEwis_PKd69n6AhWQyKACHQ11C9AQMygHegUIARD0AQ..i&docid=iPam8aYHdwb-BM&w=1000&h=1000&q=mobile%20images&ved=2ahUKEwis_PKd69n6AhWQyKACHQ11C9AQMygHegUIARD0AQ')),
+                trailing: const Icon(Icons.keyboard_arrow_right_sharp),
+                title: Text('Brand : ${myList[index]}'),
+                subtitle: Text('Subtitle $index'),
+                onTap: () {
+                  print("Clicked on Index : $index");
+                },
+              ),
+            );
+          }),
+    );
+  }
+}
