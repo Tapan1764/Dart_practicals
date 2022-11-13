@@ -1,0 +1,121 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() => runApp(new MyApp());
+
+int _AddValue = 0, _count = 0;
+
+class MyApp extends StatefulWidget {
+  _HomePage createState() => new _HomePage();
+}
+
+class _HomePage extends State<MyApp> {
+  late SharedPreferences prefs;
+
+  get prefences => null;
+  initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    prefs = await SharedPreferences.getInstance();
+    try {
+      int t = prefs.getInt("Value")!;
+      setState(() {
+        _AddValue = t;
+      });
+    } catch (e) {}
+
+    _count = _AddValue;
+    setPreviousState();
+  }
+
+  void setPreviousState() {
+    setState(() {
+      _AddValue;
+
+      _count;
+    });
+  }
+
+  void _increase() {
+    setState(() {
+      _AddValue++;
+      _count++;
+    });
+    prefs.setInt('Value', _AddValue);
+  }
+
+  void _decrease() {
+    setState(() {
+      _AddValue--;
+      _count--;
+    });
+    prefs.setInt('Value', _AddValue);
+  }
+
+  void _reset() {
+    setState(() {
+      _AddValue = 0;
+      _count = 0;
+    });
+    prefs.setInt('Value', _AddValue);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Counter',
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text("Counter"),
+          backgroundColor: Color.fromRGBO(255, 0, 0, 0.5),
+        ),
+        body: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              makeTextWidget(_AddValue),
+              new ButtonBar(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  makeButton('+', _increase),
+                  makeButton('-', _decrease),
+                  makeButton('Reset', _reset),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Widget makeButton(String label, f()) {
+  return new ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: Color.fromRGBO(255, 0, 0, 0.5),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(100.0),
+      ),
+    ),
+    child: new Text(label,
+        style: new TextStyle(
+          fontSize: 25.0,
+        )),
+    onPressed: f,
+  );
+}
+
+Widget makeTextWidget(int value) {
+  return new Text(
+    "$value",
+    style: new TextStyle(
+      fontSize: 30.0,
+      color: Color.fromRGBO(255, 0, 0, 0.5),
+      fontWeight: FontWeight.w600,
+    ),
+  );
+}
