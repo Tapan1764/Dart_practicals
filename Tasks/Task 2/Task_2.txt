@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kashyap Login App',
+      title: 'Login App',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text("Home"),
         ),
-        body: Center(child: Text("Welcome To Our registration, $name")));
+        body: Center(child: Text("Register yourself, $name")));
   }
 }
 
@@ -111,8 +111,7 @@ class _LoginState extends State<Login> {
                     },
                     child: Text(
                       "Register?",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 222, 249, 13)),
+                      style: TextStyle(color: Color.fromARGB(255, 55, 247, 55)),
                     ))
               ],
             ),
@@ -134,7 +133,7 @@ class _LoginState extends State<Login> {
             msg: "Incorrect Password",
             toastLength: Toast.LENGTH_SHORT,
             timeInSecForIosWeb: 1,
-            backgroundColor: Color.fromARGB(255, 244, 244, 54),
+            backgroundColor: Color.fromARGB(255, 55, 247, 55),
             textColor: Colors.white,
             fontSize: 16.0);
       }
@@ -143,7 +142,7 @@ class _LoginState extends State<Login> {
           msg: "User doesn't exist",
           toastLength: Toast.LENGTH_SHORT,
           timeInSecForIosWeb: 1,
-          backgroundColor: Color.fromARGB(255, 231, 244, 54),
+          backgroundColor: Color.fromARGB(255, 55, 247, 55),
           textColor: Colors.white,
           fontSize: 16.0);
     }
